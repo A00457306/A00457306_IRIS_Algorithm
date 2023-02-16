@@ -1,7 +1,9 @@
 import streamlit as st
 from joblib import load
+from sklearn import tree
 
 st.title('Deploying the model')
+LABELS = ['setosa', 'versicolor', 'virginica']
 
 clf = load('DT.joblib')
 
@@ -12,5 +14,5 @@ pe_w = st.slider('petal width (cm)', min_value=0, max_value=10)
 
 prediction = clf.predict([[sp_l, sp_w, pe_l, pe_w]])                 
 
-st.write(LABELS['prediction'])
+st.write(LABELS[prediction[0]])
 
